@@ -4,116 +4,74 @@ class ServicesSection extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-  connectedCallback() {
-    this.loadServices();
+  async connectedCallback() {
+    const data = await this.loadServices();
+    if (data) {
+      this.render(data.servicesPage);
+    }
+  }
+
+  async loadStyles() {
+    try {
+      const response = await fetch("./components/services/services.css");
+      if (!response.ok) {
+        throw new Error(`Failed to load CSS: ${response.statusText}`);
+      }
+      return await response.text();
+    } catch (error) {
+      console.error("Error loading styles:", error);
+      return "";
+    }
   }
 
   async loadServices() {
     try {
       const response = await fetch("services.json");
-      const data = await response.json();
-      this.render(data.servicesPage);
+      if (!response.ok) {
+        throw new Error(
+          `Failed to fetch services.json: ${response.statusText}`
+        );
+      }
+      return await response.json();
     } catch (error) {
       console.error("Error loading services:", error);
       this.shadowRoot.innerHTML = `<p>Error loading services. Please try again later.</p>`;
+      return null;
     }
   }
 
-  render({ description, services }) {
-    const styles = `
-        <style>
-          :host {
-            display: block;
-            padding-top: 60px;
-            font-family: Arial, sans-serif;
-          }
-.main{
-padding-top: 60px;}
-          .description {
-            text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 20px;
+  async render({ description, services }) {
+    const styles = await this.loadStyles();
+    const servicesHTML = services
+      .map(
+        (service) => `
+        <div class="service-card">
+          <img src="${service.icon}" alt="${
+          service.title
+        }" class="service-icon">
+          <div class="service-content">
+            <h2 class="service-title">${service.title}</h2>
+            <p class="service-description">${service.description}</p>
+            <ul class="service-features">
+              ${service.features
+                .map((feature) => `<li>${feature}</li>`)
+                .join("")}
+            </ul>
+          </div>
+        </div>
+      `
+      )
+      .join("");
 
-            color: #555;
-          }
-  
-          .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
-            gap: 20px;
-            margin-left: 20px;
-          }
-  
-          .service-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-              background: white; /* Default background */
-  transition: background 0.3s ease-in-out; 
-
-          }
-  
-          .service-card:hover {
-  background: linear-gradient(to right, #fae9ec, white, #f7cbd4); 
-          }
-
-          .service-icon {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-          }
-  
-          .service-content {
-            padding: 15px;
-          }
-  
-          .service-title {
-            font-size: 1.5em;
-            margin: 0 0 10px;
-          }
-  
-          .service-description {
-            margin: 0 0 15px;
-          }
-  
-          .service-features {
-            list-style-type: disc;
-            margin: 0;
-            padding-left: 20px;
-          }
-        </style>
-      `;
-
-    const content = `
-    <div class="main">
-     <p class="description">${description}</p>
+    this.shadowRoot.innerHTML = `
+      <style>${styles}</style>
+      <div class="main">
+        <p class="description">${description}</p>
         <div class="services-grid">
-          ${services
-            .map(
-              (service) => `
-              <div class="service-card">
-                <img src="${service.icon}" alt="${
-                service.title
-              }" class="service-icon">
-                <div class="service-content">
-                  <h2 class="service-title">${service.title}</h2>
-                  <p class="service-description">${service.description}</p>
-                  <ul class="service-features">
-                    ${service.features
-                      .map((feature) => `<li>${feature}</li>`)
-                      .join("")}
-                  </ul>
-                </div>
-              </div>
-            `
-            )
-            .join("")}
-        </div></div>
-       
-      `;
-
-    this.shadowRoot.innerHTML = `${styles}${content}`;
+          ${servicesHTML}
+        </div>
+      </div>
+    `;
   }
 }
 

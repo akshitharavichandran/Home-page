@@ -7,8 +7,15 @@ class FooterComponent extends HTMLElement {
   set data(footerData) {
     this.render(footerData);
   }
-
-  render(footerData) {
+  async loadStyles() {
+    const response = await fetch("./components/footer/footer.css");
+    if (!response.ok) {
+      console.error("Failed to load CSS file.", err);
+      return "";
+    }
+    return await response.text();
+  }
+  async render(footerData) {
     const sitemapLinks = footerData.sitemap
       .map(
         (item) => `
@@ -24,26 +31,11 @@ class FooterComponent extends HTMLElement {
     `
       )
       .join("");
+    const styles = await this.loadStyles();
 
     this.shadowRoot.innerHTML = `
       <style>
-        footer {
-          background: linear-gradient(135deg, #8e0e00, #d42589, #ff7e5f);          
-          color: #fff;
-          padding: 20px;
-          text-align: center;
-        }
-        ul {
-          list-style: none;
-          padding: 0;
-        }
-        a {
-          color: #fff;
-          text-decoration: none;
-        }
-        a:hover {
-          text-decoration: underline;
-        }
+      ${styles}
       </style>
       <footer>
         <h2>Site Map</h2>

@@ -1,0 +1,60 @@
+:host {
+  display: block;
+  padding-top: 60px;
+  font-family: Arial, sans-serif;
+}
+.main {
+  padding-top: 60px;
+}
+.description {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+
+  color: #555;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+  gap: 20px;
+  margin-left: 20px;
+}
+
+.service-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: white; /* Default background */
+  transition: background 0.3s ease-in-out;
+}
+
+.service-card:hover {
+  background: linear-gradient(to right, #fae9ec, white, #f7cbd4);
+}
+
+.service-icon {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.service-content {
+  padding: 15px;
+}
+
+.service-title {
+  font-size: 1.5em;
+  margin: 0 0 10px;
+}
+
+.service-description {
+  margin: 0 0 15px;
+}
+
+.service-features {
+  list-style-type: disc;
+  margin: 0;
+  padding-left: 20px;
+}

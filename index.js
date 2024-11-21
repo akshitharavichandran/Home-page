@@ -1,4 +1,4 @@
-fetch("http://192.168.240.50:5500/data.json")
+fetch("http://192.168.240.50:8081/data.json")
   .then((response) => {
     if (!response.ok) {
       throw new Error("Network response was not ok " + response.statusText);

@@ -14,8 +14,16 @@ class AboutUs extends HTMLElement {
       this.shadowRoot.innerHTML = `<p>Error loading content. Please try again later.</p>`;
     }
   }
+  async loadStyles() {
+    const response = await fetch("./components/about/about.css");
+    if (!response.ok) {
+      console.error("Failed to load CSS file.", err);
+      return "";
+    }
+    return await response.text();
+  }
 
-  render({ title, description, sections }) {
+  async render({ title, description, sections }) {
     const sectionsHTML = sections.map((section) => {
       if (section.id === "team") {
         const membersHTML = section.members
@@ -64,114 +72,11 @@ class AboutUs extends HTMLElement {
           `;
       }
     });
-
+    const styles = await this.loadStyles();
     this.shadowRoot.innerHTML = `
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-      .about-container {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      .about-header {
-        text-align: center;
-        margin-bottom: 30px;
-      }
-      .about-header h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
-        color: #000000;
-      }
-      .about-header p {
-        font-size: 1.2rem;
-        color: #555;
-      }
-      .section {
-        margin-bottom: 40px;
-        padding: 20px;
-        background: #f9f9f9;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      .section h2 {
-        font-size: 1.8rem;
-        color: #444;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-      .section p {
-        font-size: 1rem;
-        color: #666;
-        text-align: justify;
-        padding: 10px;
-      }
-      .team-members {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-      .team-member {
-        flex: 1 1 300px;
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 15px;
-        text-align: center;
-      }
-      .team-member img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-bottom: 10px;
-      }
-      .team-member h3 {
-        font-size: 1.2rem;
-        margin: 5px 0;
-      }
-      .team-member p {
-        font-size: 0.9rem;
-        color: #555;
-        text-align: center;
-      }
-      .contact-container {
-        display: flex;
-        gap: 20px;
-        justify-content: space-between;
-        flex-wrap: wrap;
-      }
-      .contact-info {
-        flex: 1;
-        padding: 15px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      .mapouter {
-        flex: 1;
-        padding: 15px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      .mapouter iframe {
-        width: 100%;
-        border: none;
-        border-radius: 8px;
-      }
-      .contact-info a {
-        color: #007BFF;
-        text-decoration: none;
-      }
-      .contact-info a:hover {
-        text-decoration: underline;
-      }
+      
+      ${styles}
     </style>
     <div class="about-container">
       <header class="about-header">

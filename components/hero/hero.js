@@ -23,55 +23,20 @@ class HeroSection extends HTMLElement {
       console.error("Fetch error:", error);
     }
   }
+  async loadStyles() {
+    const response = await fetch("./components/hero/hero.css");
+    if (!response.ok) {
+      console.error("Failed to load CSS file.", err);
+      return "";
+    }
+    return await response.text();
+  }
+  async render(section) {
+    const styles = await this.loadStyles();
 
-  render(section) {
     this.shadowRoot.innerHTML = `
       <style>
-        .hero-section {
-          width: 97%;
-          height: 100vh;
-          background-image: url('images/rose-petals.png');
-          background-size: cover;
-          background-position: center;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          color: white;
-          text-align: center;
-          padding: 20px;
-          position: relative;
-          box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-        }
-
-        .section-heading {
-          font-size: 2.5em;
-          font-weight: bold;
-          margin: 0.5em 0;
-        }
-
-        .section-caption {
-          font-size: 1.2em;
-          margin-bottom: 1em;
-        }
-
-        .section-description {
-          font-size: 1em;
-          margin-bottom: 2em;
-        }
-
-        .cta-button {
-          padding: 10px 20px;
-          background-color: white;
-          color: #930548;
-          font-weight: bold;
-          text-decoration: none;
-          font-size: 1em;
-          border-radius: 30px;
-          transition: background 0.3s ease-in-out;
-        }
-
-
+       ${styles}
       </style>
       <section class="hero-section">
         <h2 class="section-heading">${section.heading}</h2>
