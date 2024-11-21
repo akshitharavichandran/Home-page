@@ -26,10 +26,13 @@ class BlogsSection extends HTMLElement {
     }
   }
 
-  async render({ description, blogs }) {
+  async render({ title, description, blogs }) {
     const content = `
     <div class="main">
-        <p class="description">${description}</p>
+    <div class="about-header">
+     <h1 class="header">${title}</h1>
+        <p class="description">${description}</p></div>
+   
         <div class="blogs-grid">
           ${blogs
             .map(

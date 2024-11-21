@@ -46,7 +46,7 @@ class AboutUs extends HTMLElement {
           `;
       } else if (section.id === "contact") {
         return ` 
-          <div class="section" id="${section.id}">
+          <div class="section2" id="${section.id}">
             <h2>${section.title}</h2>
             <div class="contact-container">
               <div class="contact-info">

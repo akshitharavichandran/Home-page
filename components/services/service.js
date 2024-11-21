@@ -40,7 +40,7 @@ class ServicesSection extends HTMLElement {
     }
   }
 
-  async render({ description, services }) {
+  async render({ description, services, title }) {
     const styles = await this.loadStyles();
     const servicesHTML = services
       .map(
@@ -66,7 +66,10 @@ class ServicesSection extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>${styles}</style>
       <div class="main">
+      <div class="about-header">
+            <h1>${title}</h1>
         <p class="description">${description}</p>
+</div>
         <div class="services-grid">
           ${servicesHTML}
         </div>
@@ -74,5 +77,4 @@ class ServicesSection extends HTMLElement {
     `;
   }
 }
-
 customElements.define("services-section", ServicesSection);

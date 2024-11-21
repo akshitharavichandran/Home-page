@@ -1,7 +1,6 @@
 :host {
   display: block;
   padding-top: 60px;
-  font-family: Arial, sans-serif;
 }
 .main {
   padding-top: 60px;
@@ -13,7 +12,19 @@
 
   color: #555;
 }
-
+.about-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.about-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #dd345e;
+}
+.about-header p {
+  font-size: 1.2rem;
+  color: #eb68a9;
+}
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
