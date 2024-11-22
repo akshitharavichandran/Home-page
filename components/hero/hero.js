@@ -36,7 +36,7 @@ class HeroSection extends HTMLElement {
         throw new Error(`Failed to load CSS: ${response.statusText}`);
       }
       const styles = await response.text();
-      console.log("Loaded styles:", styles); // Log the CSS content
+      console.log("Loaded styles:", styles); 
       return styles;
     } catch (error) {
       console.error("Error loading styles:", error);
