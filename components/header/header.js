@@ -66,7 +66,7 @@ class HeaderComponent extends HTMLElement {
         throw new Error(`Failed to fetch header data: ${response.statusText}`);
       }
       const data = await response.json();
-      return data.header; 
+      return data.header;
     } catch (error) {
       console.error("Error fetching header data:", error);
       return null;
@@ -87,7 +87,8 @@ class HeaderComponent extends HTMLElement {
         ${styles}
       </style>
       <div class="header">
-        <img src="${headerData.brandLogo}" alt="${headerData.brandName} Logo" href="/" />
+      <a href="/">        <img src="${headerData.brandLogo}" alt="${headerData.brandName} Logo"  />
+</a>
         <h1>${headerData.brandName}</h1>
         <div class="hamburger">
           <div></div>
@@ -96,14 +97,13 @@ class HeaderComponent extends HTMLElement {
         </div>
         <nav class="desktop-nav" onclick="route(event)">
           ${headerData.navmenu
-            .map(
-              (menu) =>
-                `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
-            )
-            .join("")}
-          <a href="${headerData.cta.url}" title="${
-      headerData.cta.desc
-    }" class="cta-button">
+        .map(
+          (menu) =>
+            `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
+        )
+        .join("")}
+          <a href="${headerData.cta.url}" title="${headerData.cta.desc
+      }" class="cta-button">
             ${headerData.cta.label}
           </a>
         </nav>
@@ -112,15 +112,14 @@ class HeaderComponent extends HTMLElement {
         <button class="close-btn">&times;</button>
         <nav>
           ${headerData.navmenu
-            .map(
-              (menu) =>
-                `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
-            )
-            .join("")}
+        .map(
+          (menu) =>
+            `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
+        )
+        .join("")}
         </nav>
-        <a href="${headerData.cta.url}" title="${
-      headerData.cta.desc
-    }" class="cta-button">
+        <a href="${headerData.cta.url}" title="${headerData.cta.desc
+      }" class="cta-button">
           ${headerData.cta.label}
         </a>
       </div>

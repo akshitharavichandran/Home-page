@@ -54,13 +54,14 @@ const routes = {
     script: "/components/contact-us/contact.js",
   },
 };
-
 const handleLocation = async () => {
   const path = window.location.pathname;
   const route = routes[path];
+  const otherSections = document.getElementById("other-sections");
 
   if (!route) {
     document.getElementById("main-page").innerHTML = "<h1>Page not found</h1>";
+    if (otherSections) otherSections.innerHTML = ""; 
     return;
   }
 
@@ -91,12 +92,24 @@ const handleLocation = async () => {
         document.body.appendChild(script);
       }
     }
+
+    if (path === "/") {
+      if (otherSections) {
+        otherSections.innerHTML = `
+          <other-sections></other-sections>
+        `;
+      }
+    } else {
+      if (otherSections) otherSections.innerHTML = ""; 
+    }
   } catch (error) {
     console.error("Error loading page content:", error);
     document.getElementById("main-page").innerHTML =
       "<h1>Something went wrong while loading the page</h1>";
+    if (otherSections) otherSections.innerHTML = "";
   }
 };
+
 
 window.onpopstate = handleLocation;
 window.route = route;

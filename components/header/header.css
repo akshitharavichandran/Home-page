@@ -173,4 +173,9 @@ nav.desktop-nav a.active-link {
   .sidebar {
     display: block;
   }
+  .header img {
+    height: 8vw;
+    width: 8vw;
+    border-radius: 50%;
+  }
 }
