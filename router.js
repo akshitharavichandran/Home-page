@@ -49,6 +49,10 @@ const routes = {
     html: "/components/blogs/blogs.html",
     script: "/components/blogs/blogs.js",
   },
+  "/contact": {
+    html: "/components/contact-us/contact.html",
+    script: "/components/contact-us/contact.js",
+  },
 };
 
 const handleLocation = async () => {
@@ -56,7 +60,6 @@ const handleLocation = async () => {
   const route = routes[path];
 
   if (!route) {
-    // Handle 404 or fallback logic
     document.getElementById("main-page").innerHTML = "<h1>Page not found</h1>";
     return;
   }
