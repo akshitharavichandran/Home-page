@@ -6,7 +6,7 @@ class HeaderComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    this.setupEventListeners();
+    this.loadAndRenderHeader();
   }
 
   disconnectedCallback() {
@@ -48,7 +48,7 @@ class HeaderComponent extends HTMLElement {
 
   async loadStyles() {
     try {
-      const response = await fetch("./components/sections/sections.css");
+      const response = await fetch("./components/header/header.css");
       if (!response.ok) {
         throw new Error(`Failed to load CSS: ${response.statusText}`);
       }
@@ -59,7 +59,27 @@ class HeaderComponent extends HTMLElement {
     }
   }
 
-  async renderHeader(value) {
+  async fetchHeaderData() {
+    try {
+      const response = await fetch("./data.json");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch header data: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data.header; 
+    } catch (error) {
+      console.error("Error fetching header data:", error);
+      return null;
+    }
+  }
+
+  async loadAndRenderHeader() {
+    const headerData = await this.fetchHeaderData();
+    if (!headerData) {
+      console.error("No header data to render");
+      return;
+    }
+
     const styles = await this.loadStyles();
 
     this.innerHTML = `
@@ -67,47 +87,46 @@ class HeaderComponent extends HTMLElement {
         ${styles}
       </style>
       <div class="header">
-        <img src="${value.brandLogo}" alt="${value.brandName} Logo" />
-        <h1>${value.brandName}</h1>
+        <img src="${headerData.brandLogo}" alt="${headerData.brandName} Logo" />
+        <h1>${headerData.brandName}</h1>
         <div class="hamburger">
           <div></div>
           <div></div>
           <div></div>
         </div>
-        <nav class="desktop-nav">
-          ${value.navmenu
+        <nav class="desktop-nav" onclick="route(event)">
+          ${headerData.navmenu
             .map(
               (menu) =>
                 `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
             )
             .join("")}
-          <a href="${value.cta.url}" title="${
-      value.cta.desc
+          <a href="${headerData.cta.url}" title="${
+      headerData.cta.desc
     }" class="cta-button">
-            ${value.cta.label}
+            ${headerData.cta.label}
           </a>
         </nav>
       </div>
       <div class="sidebar">
         <button class="close-btn">&times;</button>
         <nav>
-          ${value.navmenu
+          ${headerData.navmenu
             .map(
               (menu) =>
                 `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
             )
             .join("")}
         </nav>
-        <a href="${value.cta.url}" title="${value.cta.desc}" class="cta-button">
-          ${value.cta.label}
+        <a href="${headerData.cta.url}" title="${
+      headerData.cta.desc
+    }" class="cta-button">
+          ${headerData.cta.label}
         </a>
       </div>
     `;
-    this.setupEventListeners();
-  }
 
-  set data(value) {
-    this.renderHeader(value);
+    this.setupEventListeners();
   }
 }
 

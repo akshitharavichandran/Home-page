@@ -6,31 +6,44 @@ class HeroSection extends HTMLElement {
 
   async connectedCallback() {
     try {
-      const response = await fetch("data.json");
+      const response = await fetch("http://127.0.0.1:5500/data.json");
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
+      console.log("Fetched data:", data); // Log the entire JSON
       const heroSection = data.pages.home.sections.find(
         (section) => section.type === "hero"
       );
 
+      console.log("Hero section data:", heroSection); // Log the hero section
       if (heroSection) {
         this.render(heroSection);
+      } else {
+        this.shadowRoot.innerHTML = `<p>Hero section data not found.</p>`;
       }
     } catch (error) {
       console.error("Fetch error:", error);
+      this.shadowRoot.innerHTML = `<p>Failed to load hero section. Please try again later.</p>`;
     }
   }
+
   async loadStyles() {
-    const response = await fetch("./components/hero/hero.css");
-    if (!response.ok) {
-      console.error("Failed to load CSS file.", err);
+    try {
+      const response = await fetch("./components/hero/hero.css");
+      if (!response.ok) {
+        throw new Error(`Failed to load CSS: ${response.statusText}`);
+      }
+      const styles = await response.text();
+      console.log("Loaded styles:", styles); // Log the CSS content
+      return styles;
+    } catch (error) {
+      console.error("Error loading styles:", error);
       return "";
     }
-    return await response.text();
   }
+
   async render(section) {
     const styles = await this.loadStyles();
 
