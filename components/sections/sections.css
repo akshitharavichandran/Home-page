@@ -23,13 +23,13 @@ main {
 }
 
 .section-heading {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 3vw + 0.5rem, 1.5rem);
   color: #ffffff;
   margin-bottom: 8px;
 }
 
 .section-description {
-  font-size: 1rem;
+  font-size: clamp(0.875rem, 1.5vw + 0.5rem, 1rem);
   color: #ffffff;
   margin-bottom: 12px;
 }
@@ -42,5 +42,5 @@ main {
   background-color: #ffffff;
   text-decoration: none;
   border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: clamp(0.875rem, 1.5vw + 0.5rem, 0.9rem);
 }

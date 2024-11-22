@@ -6,6 +6,29 @@ const route = (event) => {
   if (targetHref) {
     window.history.pushState({}, "", targetHref);
     handleLocation();
+    updateActiveLink(targetHref);
+    updateHeaderStyle(); 
+  }
+};
+
+const updateActiveLink = (targetHref) => {
+  const links = document.querySelectorAll("nav.desktop-nav a");
+
+  links.forEach((link) => {
+    link.classList.remove("active-link");
+  });
+
+
+  const activeLink = Array.from(links).find((link) => link.href === targetHref);
+  if (activeLink) {
+    activeLink.classList.add("active-link");
+  }
+};
+
+const updateHeaderStyle = () => {
+  const header = document.querySelector('.header');
+  if (header) {
+    header.classList.add('active'); 
   }
 };
 
@@ -39,7 +62,6 @@ const handleLocation = async () => {
   }
 
   try {
-    // Fetch the HTML content for the route
     const response = await fetch(route.html);
     if (!response.ok) {
       throw new Error(
@@ -48,7 +70,6 @@ const handleLocation = async () => {
     }
     const html = await response.text();
 
-    // Render the fetched HTML content inside the target container
     const mainPage = document.getElementById("main-page");
     if (mainPage) {
       mainPage.innerHTML = html;
@@ -56,7 +77,6 @@ const handleLocation = async () => {
       console.error("No container found with ID 'main-page'");
     }
 
-    // Dynamically load the associated script (if any)
     if (route.script) {
       const existingScript = document.querySelector(
         `script[src="${route.script}"]`
@@ -75,9 +95,12 @@ const handleLocation = async () => {
   }
 };
 
-// Listen for back/forward navigation
 window.onpopstate = handleLocation;
 window.route = route;
 
-// Initialize routing
 handleLocation();
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateActiveLink(window.location.href);
+  updateHeaderStyle(); 
+});

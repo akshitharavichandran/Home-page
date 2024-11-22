@@ -87,7 +87,7 @@ class HeaderComponent extends HTMLElement {
         ${styles}
       </style>
       <div class="header">
-        <img src="${headerData.brandLogo}" alt="${headerData.brandName} Logo" />
+        <img src="${headerData.brandLogo}" alt="${headerData.brandName} Logo" href="/" />
         <h1>${headerData.brandName}</h1>
         <div class="hamburger">
           <div></div>
