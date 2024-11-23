@@ -134,7 +134,7 @@ nav.desktop-nav a.active-link {
   padding: 0.75em 1em;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
   font-weight: bold;
-  background: #df0f54;
+  background: #dd2c7f;
   border-radius: 5px;
   text-decoration: none;
   color: white;
@@ -142,7 +142,7 @@ nav.desktop-nav a.active-link {
 }
 
 .sidebar .cta-button:hover {
-  background: #d0701a;
+  background: #d8044b;
 }
 
 .close-btn {
