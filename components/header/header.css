@@ -49,8 +49,9 @@ nav.desktop-nav {
 }
 
 nav.desktop-nav a {
-  color: white;
+  color: #FF8FA3;
   text-decoration: none;
+  font-weight: bold;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
   padding: 0.25em;
 }
@@ -69,15 +70,16 @@ nav.desktop-nav a.active-link {
   color: white;
 }
 
-.cta-button {
+.header .cta-button {
   background-color: #f0842f;
-  color: white;
+  color: white !important; 
   padding: 0.25em 0.75em;
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
 }
+
 
 .cta-button:hover {
   background-color: #d0701a;
