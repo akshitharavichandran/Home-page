@@ -12,23 +12,52 @@ class HeaderComponent extends HTMLElement {
   disconnectedCallback() {
     const hamburger = this.querySelector(".hamburger");
     const closeButton = this.querySelector(".close-btn");
+    const links = this.querySelectorAll("nav a");
+
     if (hamburger) {
       hamburger.removeEventListener("click", this.toggleMenu);
     }
     if (closeButton) {
       closeButton.removeEventListener("click", this.closeMenu);
     }
+    if (links) {
+      links.forEach((link) =>
+        link.removeEventListener("click", this.handleLinkClick)
+      );
+    }
   }
 
   setupEventListeners() {
     const hamburger = this.querySelector(".hamburger");
     const closeButton = this.querySelector(".close-btn");
+    const links = this.querySelectorAll("nav a"); // Select links in both desktop and sidebar menus
 
     if (hamburger) {
       hamburger.addEventListener("click", this.toggleMenu);
     }
     if (closeButton) {
       closeButton.addEventListener("click", this.closeMenu);
+    }
+    if (links) {
+      links.forEach((link) =>
+        link.addEventListener("click", this.handleLinkClick)
+      );
+    }
+  }
+
+  handleLinkClick(event) {
+    event.preventDefault(); // Prevent default browser navigation
+    const targetHref = event.target.getAttribute("href");
+
+    if (targetHref) {
+      window.history.pushState({}, "", targetHref); // Update URL without reloading
+      handleLocation(); // Handle routing dynamically
+    }
+
+    // Close the sidebar if it's open
+    const sidebar = document.querySelector(".sidebar");
+    if (sidebar && sidebar.classList.contains("active")) {
+      sidebar.classList.remove("active");
     }
   }
 
@@ -87,23 +116,27 @@ class HeaderComponent extends HTMLElement {
         ${styles}
       </style>
       <div class="header">
-      <a href="/">        <img src="${headerData.brandLogo}" alt="${headerData.brandName} Logo"  />
-</a>
+        <a href="/">
+          <img src="${headerData.brandLogo}" alt="${
+      headerData.brandName
+    } Logo" />
+        </a>
         <h1>${headerData.brandName}</h1>
         <div class="hamburger">
           <div></div>
           <div></div>
           <div></div>
         </div>
-        <nav class="desktop-nav" onclick="route(event)">
+        <nav class="desktop-nav">
           ${headerData.navmenu
-        .map(
-          (menu) =>
-            `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
-        )
-        .join("")}
-          <a href="${headerData.cta.url}" title="${headerData.cta.desc
-      }" class="cta-button">
+            .map(
+              (menu) =>
+                `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
+            )
+            .join("")}
+          <a href="${headerData.cta.url}" title="${
+      headerData.cta.desc
+    }" class="cta-button">
             ${headerData.cta.label}
           </a>
         </nav>
@@ -112,14 +145,15 @@ class HeaderComponent extends HTMLElement {
         <button class="close-btn">&times;</button>
         <nav>
           ${headerData.navmenu
-        .map(
-          (menu) =>
-            `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
-        )
-        .join("")}
+            .map(
+              (menu) =>
+                `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
+            )
+            .join("")}
         </nav>
-        <a href="${headerData.cta.url}" title="${headerData.cta.desc
-      }" class="cta-button">
+        <a href="${headerData.cta.url}" title="${
+      headerData.cta.desc
+    }" class="cta-button">
           ${headerData.cta.label}
         </a>
       </div>
