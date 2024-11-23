@@ -5,7 +5,7 @@ class Sections extends HTMLElement {
   }
 
   async connectedCallback() {
-    const response = await fetch("data.json");
+    const response = await fetch("https://akshmagic.netlify.app/data.json");
     const data = await response.json();
     const otherSections = data.pages.home.sections.filter(
       (section) => section.type !== "hero"

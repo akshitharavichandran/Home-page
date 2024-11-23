@@ -26,7 +26,7 @@ class ServicesSection extends HTMLElement {
 
   async loadServices() {
     try {
-      const response = await fetch("services.json");
+      const response = await fetch("https://akshmagic.netlify.app/services.json");
       if (!response.ok) {
         throw new Error(
           `Failed to fetch services.json: ${response.statusText}`

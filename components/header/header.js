@@ -90,7 +90,7 @@ class HeaderComponent extends HTMLElement {
 
   async fetchHeaderData() {
     try {
-      const response = await fetch("./data.json");
+      const response = await fetch("https://akshmagic.netlify.app/data.json");
       if (!response.ok) {
         throw new Error(`Failed to fetch header data: ${response.statusText}`);
       }

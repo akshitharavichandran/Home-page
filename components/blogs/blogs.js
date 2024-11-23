@@ -1,22 +1,21 @@
 class BlogsSection extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' }); // Attach Shadow DOM
+    this.attachShadow({ mode: 'open' }); 
   }
 
   connectedCallback() {
-    this.loadBlogs(); // Fetch and render blog content
+    this.loadBlogs(); 
   }
 
-  // Load external styles
   async loadStyles() {
     try {
       const response = await fetch('./components/blogs/blogs.css');
       if (response.ok) {
-        return await response.text(); // Return CSS as text
+        return await response.text(); 
       }
       console.error('Failed to load CSS file.');
-      return ''; // Fallback: Empty styles
+      return ''; 
     } catch (err) {
       console.error('Error loading CSS:', err);
       return '';
@@ -26,10 +25,10 @@ class BlogsSection extends HTMLElement {
   // Load blogs data
   async loadBlogs() {
     try {
-      const response = await fetch('blogs.json');
+      const response = await fetch('https://akshmagic.netlify.app/blogs.json');
       if (response.ok) {
         const data = await response.json();
-        this.render(data.blogsPage); // Pass data to render method
+        this.render(data.blogsPage); 
       } else {
         throw new Error('Failed to load blogs data');
       }
@@ -41,7 +40,6 @@ class BlogsSection extends HTMLElement {
 
   // Render the blogs content and styles
   async render({ title, description, blogs }) {
-    // Generate blogs grid content
     const blogsContent = blogs
       .map(
         (blog) => `

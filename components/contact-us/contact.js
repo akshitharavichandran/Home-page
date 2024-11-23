@@ -6,7 +6,7 @@ class ContactUs extends HTMLElement {
   
     async connectedCallback() {
       try {
-        const response = await fetch("about.json"); // Ensure the path is correct
+        const response = await fetch("https://akshmagic.netlify.app/about.json"); 
         const data = await response.json();
   
         // Find the 'Contact Us' section inside the `sections` array

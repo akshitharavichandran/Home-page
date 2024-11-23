@@ -12,19 +12,16 @@ class HeroSection extends HTMLElement {
       }
 
       const data = await response.json();
-      console.log("Fetched data:", data); // Log the entire JSON
       const heroSection = data.pages.home.sections.find(
         (section) => section.type === "hero"
       );
 
-      console.log("Hero section data:", heroSection); // Log the hero section
       if (heroSection) {
         this.render(heroSection);
       } else {
         this.shadowRoot.innerHTML = `<p>Hero section data not found.</p>`;
       }
     } catch (error) {
-      console.error("Fetch error:", error);
       this.shadowRoot.innerHTML = `<p>Failed to load hero section. Please try again later.</p>`;
     }
   }
@@ -36,7 +33,6 @@ class HeroSection extends HTMLElement {
         throw new Error(`Failed to load CSS: ${response.statusText}`);
       }
       const styles = await response.text();
-      console.log("Loaded styles:", styles); 
       return styles;
     } catch (error) {
       console.error("Error loading styles:", error);

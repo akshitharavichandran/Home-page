@@ -6,7 +6,7 @@ class AboutUs extends HTMLElement {
 
   async connectedCallback() {
     try {
-      const response = await fetch("about.json");
+      const response = await fetch("https://akshmagic.netlify.app/about.json");
       const data = await response.json();
       this.render(data.aboutPage);
     } catch (error) {
