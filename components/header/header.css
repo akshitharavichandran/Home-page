@@ -134,7 +134,7 @@ nav.desktop-nav a.active-link {
   padding: 0.75em 1em;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
   font-weight: bold;
-  background: #e0109b;
+  background: #e94fb6;
   border-radius: 5px;
   text-decoration: none;
   color: white;
@@ -156,10 +156,6 @@ nav.desktop-nav a.active-link {
   color: #fff;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
-}
-
-.close-btn:hover {
-  color: rgb(201, 25, 107);
 }
 
 @media (max-width: 768px) {
