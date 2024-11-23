@@ -170,6 +170,7 @@ nav.desktop-nav a.active-link {
   .hamburger {
     display: flex;
     margin-right: 20px;
+    color:#1a1a1a
   }
 
   .sidebar {
