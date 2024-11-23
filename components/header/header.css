@@ -92,8 +92,8 @@ nav.desktop-nav a.active-link {
   right: 0;
   width: 240px;
   height: 100vh;
-  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
-  color: white;
+  background: linear-gradient(135deg, #e08a8a, #dd3a3a);
+  color: black;
   padding: 1.5em;
   box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5);
   transform: translateX(100%);
@@ -170,7 +170,11 @@ nav.desktop-nav a.active-link {
   .hamburger {
     display: flex;
     margin-right: 20px;
-    color:#1a1a1a
+  }
+  .hamburger div {
+    width: 20px;
+    height: 2px;
+    background-color: black;
   }
 
   .sidebar {
