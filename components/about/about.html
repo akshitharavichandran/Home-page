@@ -3,10 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About</title>
-    <script src="/about.js"></script>
+    <title>About Us</title>
+    <script src="about.js" type="module"></script>
   </head>
   <body>
+    <template id="about-us-template">
+      <div class="about-container">
+        <header class="about-header">
+          <h1 class="about-title"></h1>
+          <p class="about-description"></p>
+        </header>
+        <div class="sections-container">
+          <div class="section" id="team">
+            <h2 class="section-title">Our Team</h2>
+            <div class="team-members"></div>
+          </div>
+          <div class="section" id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+              <div class="contact-info">
+                <p class="contact-email"></p>
+                <p class="contact-phone"></p>
+                <p class="contact-address"></p>
+                <p class="contact-map"></p>
+              </div>
+              <div class="mapouter">
+                <iframe class="google-map"></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
     <about-us></about-us>
   </body>
 </html>
