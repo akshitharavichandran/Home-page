@@ -4,18 +4,55 @@ class FooterComponent extends HTMLElement {
     this.attachShadow({ mode: "open" });
   }
 
-  set data(footerData) {
-    this.render(footerData);
+  connectedCallback() {
+    this.loadAndRenderFooter();
   }
+
+  async fetchFooterData() {
+    try {
+      const response = await fetch("http://127.0.0.1:5500/data.json");  
+      if (!response.ok) {
+        throw new Error(`Failed to fetch footer data: ${response.statusText}`);
+      }
+      const data = await response.json();
+      return data.footer;  
+    } catch (error) {
+      console.error("Error fetching footer data:", error);
+      return null;
+    }
+  }
+
   async loadStyles() {
-    const response = await fetch("./components/footer/footer.css");
-    if (!response.ok) {
-      console.error("Failed to load CSS file.", err);
+    try {
+      const response = await fetch("./components/footer/footer.css");
+      if (!response.ok) {
+        throw new Error("Failed to load CSS file.");
+      }
+      return await response.text();
+    } catch (err) {
+      console.error(err);
       return "";
     }
-    return await response.text();
   }
+
+  async loadAndRenderFooter() {
+    const footerData = await this.fetchFooterData();
+    if (!footerData) {
+      console.error("No footer data to render");
+      return;
+    }
+    this.render(footerData); 
+  }
+
   async render(footerData) {
+    const templateResponse = await fetch("./components/footer/footer.html");
+    const templateText = await templateResponse.text();
+    const templateElement = document.createElement('div');
+    templateElement.innerHTML = templateText;
+    const template = templateElement.querySelector('#footer-template');
+
+    const footerContent = document.importNode(template.content, true);
+
     const sitemapLinks = footerData.sitemap
       .map(
         (item) => `
@@ -31,19 +68,18 @@ class FooterComponent extends HTMLElement {
     `
       )
       .join("");
+
+    footerContent.querySelector('.sitemap-links').innerHTML = sitemapLinks;
+    footerContent.querySelector('.social-media-links').innerHTML = socialMediaLinks;
+
     const styles = await this.loadStyles();
 
     this.shadowRoot.innerHTML = `
       <style>
-      ${styles}
+        ${styles}
       </style>
-      <footer>
-        <h2>Site Map</h2>
-        <ul>${sitemapLinks}</ul>
-        <h2>Follow Us</h2>
-        <ul>${socialMediaLinks}</ul>
-      </footer>
     `;
+    this.shadowRoot.appendChild(footerContent);
   }
 }
 
