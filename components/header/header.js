@@ -30,7 +30,7 @@ class HeaderComponent extends HTMLElement {
   setupEventListeners() {
     const hamburger = this.querySelector(".hamburger");
     const closeButton = this.querySelector(".close-btn");
-    const links = this.querySelectorAll("nav a"); // Select links in both desktop and sidebar menus
+    const links = this.querySelectorAll("nav a");
 
     if (hamburger) {
       hamburger.addEventListener("click", this.toggleMenu);
@@ -46,15 +46,14 @@ class HeaderComponent extends HTMLElement {
   }
 
   handleLinkClick(event) {
-    event.preventDefault(); // Prevent default browser navigation
+    event.preventDefault();
     const targetHref = event.target.getAttribute("href");
 
     if (targetHref) {
-      window.history.pushState({}, "", targetHref); // Update URL without reloading
-      handleLocation(); // Handle routing dynamically
+      window.history.pushState({}, "", targetHref);
+      handleLocation(); 
     }
 
-    // Close the sidebar if it's open
     const sidebar = document.querySelector(".sidebar");
     if (sidebar && sidebar.classList.contains("active")) {
       sidebar.classList.remove("active");
@@ -90,7 +89,7 @@ class HeaderComponent extends HTMLElement {
 
   async fetchHeaderData() {
     try {
-      const response = await fetch("https://akshmagic.netlify.app/data.json");
+      const response = await fetch("http://127.0.0.1:5500/data.json");
       if (!response.ok) {
         throw new Error(`Failed to fetch header data: ${response.statusText}`);
       }
@@ -111,53 +110,58 @@ class HeaderComponent extends HTMLElement {
 
     const styles = await this.loadStyles();
 
+    const templateResponse = await fetch('./components/header/header.html');
+    if (!templateResponse.ok) {
+      console.error("Failed to load template.");
+      return;
+    }
+    const templateText = await templateResponse.text();
+    const template = new DOMParser().parseFromString(templateText, 'text/html').querySelector('#header-template');
+  
+    if (!template) {
+      console.error("Template with id 'header-template' not found.");
+      return;
+    }
+  
+    const templateContent = template.content.cloneNode(true);
+    const brandLogo = templateContent.querySelector(".brand-logo");
+    const brandName = templateContent.querySelector(".brand-name");
+    const desktopNav = templateContent.querySelector(".desktop-nav");
+    const mobileNav = templateContent.querySelector(".mobile-nav");
+    const ctaButtonDesktop = document.createElement("a"); 
+    const ctaButtonMobile = templateContent.querySelector(".cta-button");  
+
+    brandLogo.src = headerData.brandLogo;
+    brandName.textContent = headerData.brandName;
+
+    desktopNav.innerHTML = headerData.navmenu
+      .map(
+        (menu) => `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
+      )
+      .join("");
+
+    mobileNav.innerHTML = headerData.navmenu
+      .map(
+        (menu) => `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
+      )
+      .join("");
+
+    ctaButtonDesktop.href = headerData.cta.url;
+    ctaButtonDesktop.title = headerData.cta.desc;
+    ctaButtonDesktop.textContent = headerData.cta.label;
+    ctaButtonDesktop.classList.add("cta-button"); 
+    desktopNav.appendChild(ctaButtonDesktop);  
+
+    ctaButtonMobile.href = headerData.cta.url;
+    ctaButtonMobile.title = headerData.cta.desc;
+    ctaButtonMobile.textContent = headerData.cta.label;
+
     this.innerHTML = `
       <style>
         ${styles}
       </style>
-      <div class="header">
-        <a href="/">
-          <img src="${headerData.brandLogo}" alt="${
-      headerData.brandName
-    } Logo" />
-        </a>
-        <h1>${headerData.brandName}</h1>
-        <div class="hamburger">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <nav class="desktop-nav">
-          ${headerData.navmenu
-            .map(
-              (menu) =>
-                `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
-            )
-            .join("")}
-          <a href="${headerData.cta.url}" title="${
-      headerData.cta.desc
-    }" class="cta-button">
-            ${headerData.cta.label}
-          </a>
-        </nav>
-      </div>
-      <div class="sidebar">
-        <button class="close-btn">&times;</button>
-        <nav>
-          ${headerData.navmenu
-            .map(
-              (menu) =>
-                `<a href="${menu.url}" title="${menu.desc}">${menu.label}</a>`
-            )
-            .join("")}
-        </nav>
-        <a href="${headerData.cta.url}" title="${
-      headerData.cta.desc
-    }" class="cta-button">
-          ${headerData.cta.label}
-        </a>
-      </div>
     `;
+    this.appendChild(templateContent);
 
     this.setupEventListeners();
   }

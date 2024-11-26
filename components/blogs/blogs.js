@@ -22,10 +22,9 @@ class BlogsSection extends HTMLElement {
     }
   }
 
-  // Load blogs data
   async loadBlogs() {
     try {
-      const response = await fetch('https://akshmagic.netlify.app/blogs.json');
+      const response = await fetch('http://127.0.0.1:5500/blogs.json');
       if (response.ok) {
         const data = await response.json();
         this.render(data.blogsPage); 
@@ -38,7 +37,6 @@ class BlogsSection extends HTMLElement {
     }
   }
 
-  // Render the blogs content and styles
   async render({ title, description, blogs }) {
     const blogsContent = blogs
       .map(

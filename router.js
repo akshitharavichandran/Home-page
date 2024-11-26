@@ -6,29 +6,6 @@ const route = (event) => {
   if (targetHref) {
     window.history.pushState({}, "", targetHref);
     handleLocation();
-    updateActiveLink(targetHref);
-    updateHeaderStyle(); 
-  }
-};
-
-const updateActiveLink = (targetHref) => {
-  const links = document.querySelectorAll("nav.desktop-nav a");
-
-  links.forEach((link) => {
-    link.classList.remove("active-link");
-  });
-
-
-  const activeLink = Array.from(links).find((link) => link.href === targetHref);
-  if (activeLink) {
-    activeLink.classList.add("active-link");
-  }
-};
-
-const updateHeaderStyle = () => {
-  const header = document.querySelector('.header');
-  if (header) {
-    header.classList.add('active'); 
   }
 };
 
@@ -116,7 +93,4 @@ window.route = route;
 
 handleLocation();
 
-document.addEventListener("DOMContentLoaded", () => {
-  updateActiveLink(window.location.href);
-  updateHeaderStyle(); 
-});
+
