@@ -4,9 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Services</title>
-    <script src="/services.js"></script>
+    <script src="components/services/services.js" type="module"></script>
   </head>
   <body>
+    <template id="services-section-template">
+      <div class="main">
+        <div class="about-header">
+          <h1 class="services-title"></h1>
+          <p class="services-description"></p>
+        </div>
+        <div class="services-grid">
+        </div>
+      </div>
+    </template>
     <services-section></services-section>
   </body>
 </html>

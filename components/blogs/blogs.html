@@ -4,9 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blogs</title>
-    <script src="/blogs.js"></script>
+    <script src="components/blogs/blogs.js" type="module"></script>
   </head>
   <body>
+    <template id="blogs-template">
+      <div class="main">
+        <div class="about-header">
+          <h1 class="header"></h1>
+          <p class="description"></p>
+        </div>
+        <div class="blogs-grid"></div>
+      </div>
+    </template>
     <blogs-section></blogs-section>
   </body>
 </html>

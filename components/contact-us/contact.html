@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
-    <script src="contact.js"></script>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <script src="components/contact-us/contact.js" type="module"></script>
+  </head>
+  <body>
+    <template id="contact-us-template">
+      <div class="main">
+        <div class="about-header">
+          <h2 class="contact-title"></h2>
+          <p class="contact-subtitle"></p>
+        </div>
+        <div class="contact-container">
+          <div class="contact-info">
+            <p class="contact-email"></p>
+            <p class="contact-phone"></p>
+            <p class="contact-address"></p>
+            <p class="contact-map-link"></p>
+          </div>
+          <div class="mapouter">
+            <iframe class="google-map"></iframe>
+          </div>
+        </div>
+      </div>
+    </template>
     <contact-us></contact-us>
-</body>
+  </body>
 </html>
