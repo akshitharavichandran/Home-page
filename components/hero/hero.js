@@ -64,7 +64,8 @@ class HeroSection extends HTMLElement {
       heroContent.querySelector('.section-heading').textContent = heroData.heading;
       heroContent.querySelector('.section-caption').textContent = heroData.caption;
       heroContent.querySelector('.section-description').textContent = heroData.description;
-      const ctaButton = heroContent.querySelector('.cta-button');
+      heroContent.querySelector('.hero-image').setAttribute('src', heroData.imageUrl);
+      const ctaButton = heroContent.querySelector('.cta-button', heroData.cta);
       ctaButton.setAttribute('href', heroData.cta.url);
       ctaButton.setAttribute('title', heroData.cta.desc);
       ctaButton.textContent = heroData.cta.label;

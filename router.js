@@ -69,14 +69,19 @@ const handleLocation = async () => {
         document.body.appendChild(script);
       }
     }
-
     if (path === "/") {
+      const mainPage = document.getElementById("main-page");
+      if (mainPage) {
+        mainPage.innerHTML = `<hero-section></hero-section>`;
+      }
       if (otherSections) {
         otherSections.innerHTML = `
           <other-sections></other-sections>
         `;
       }
-    } else {
+    }
+    
+    else {
       if (otherSections) otherSections.innerHTML = ""; 
     }
   } catch (error) {
