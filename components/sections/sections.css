@@ -5,19 +5,23 @@
 }
 
 main {
-  padding: 20px;
+  padding: 0; 
 }
 
 .section {
-  border: 2px solid #fff;
-  border-radius: 8px;
+  height: 100vh; 
+  border-radius: 0; 
   background: linear-gradient(135deg, #8e0e00, #d42589, #ff7e5f);
-  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
 .section-image {
   max-width: 100%;
+  height: auto;
   border-radius: 8px;
   margin-bottom: 12px;
 }
@@ -43,4 +47,11 @@ main {
   text-decoration: none;
   border-radius: 4px;
   font-size: clamp(0.875rem, 1.5vw + 0.5rem, 0.9rem);
+  transition: background 0.3s ease-in-out;
+}
+
+.cta-button:hover {
+  background-color: #d42589;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Hover effect */
 }
