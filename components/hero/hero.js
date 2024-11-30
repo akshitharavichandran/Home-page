@@ -61,11 +61,10 @@ class HeroSection extends HTMLElement {
 
       const heroContent = document.importNode(template.content, true);
 
-      // Safely set hero content
       heroContent.querySelector('.section-heading').textContent = heroData.heading || "Welcome to Aksh's Magic";
       heroContent.querySelector('.section-caption').textContent = heroData.caption || "Innovative solutions to elevate your business.";
       heroContent.querySelector('.section-description').textContent = heroData.description || "";
-      heroContent.querySelector('.hero-image').setAttribute('src', heroData.imageUrl || "images/rose-petals.png");
+      heroContent.querySelector('.hero-image').setAttribute('src', heroData.imageUrl || "images/framelanding.png");
 
       const ctaButton = heroContent.querySelector('.cta-button');
       if (heroData.cta) {

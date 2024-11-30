@@ -1,23 +1,49 @@
 .header {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 98%;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0.5em 1em;
-  background: transparent #1a1a1a;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: white;
   z-index: 10;
   flex-wrap: wrap;
+  border-radius: 3rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.header a {
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .header img {
   height: 3vw;
   width: 3vw;
   border-radius: 50%;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.header img::before,
+.header img::after,
+.header a::before,
+.header a::after {
+  content: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .header h1 {
@@ -25,6 +51,13 @@
   margin: 0;
   font-weight: bold;
   color: #fff;
+  background: transparent;
+  box-shadow: none;
+}
+
+.brand-name {
+  color: #3AA1FF !important;
+  font-weight: 600 !important
 }
 
 .hamburger {
@@ -34,6 +67,7 @@
   width: 20px;
   height: 15px;
   cursor: pointer;
+  background: transparent;
 }
 
 .hamburger div {
@@ -45,15 +79,17 @@
 nav.desktop-nav {
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 2.5em;
+  background: transparent;
 }
 
 nav.desktop-nav a {
-  color: #FF8FA3;
+  color: #BCBCBC;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: medium;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
   padding: 0.25em;
+  background: transparent;
 }
 
 nav.desktop-nav a:hover {
@@ -66,20 +102,19 @@ nav.desktop-nav a.active-link {
 }
 
 .header.active {
-  background-color: #d10f39;
+  background-color: #3AA1FF;
   color: white;
 }
 
 .header .cta-button {
-  background-color: #f0842f;
-  color: white !important; 
-  padding: 0.25em 0.75em;
+  background: linear-gradient(80.94deg, #4299EA 27.45%, #00C9D6 83.06%) !important;
+  color: white !important;
+  padding: 0.5em 1em !important;
   text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
+  border-radius: 3em;
+  font-weight: 400 !important;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
 }
-
 
 .cta-button:hover {
   background-color: #d0701a;
@@ -92,7 +127,7 @@ nav.desktop-nav a.active-link {
   right: 0;
   width: 240px;
   height: 100vh;
-  background: linear-gradient(135deg, #da416e, #ce1c51);
+  background-color: #0E0F1C;
   color: black;
   padding: 1.5em;
   box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5);
@@ -108,6 +143,8 @@ nav.desktop-nav a.active-link {
 .sidebar nav {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 1em;
   margin-top: 1.5em;
 }
@@ -134,7 +171,7 @@ nav.desktop-nav a.active-link {
   padding: 0.75em 1em;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
   font-weight: bold;
-  background: #d63131;
+  background-color: #0E0F1C;
   border-radius: 5px;
   text-decoration: none;
   color: white;
@@ -167,18 +204,21 @@ nav.desktop-nav a.active-link {
     display: flex;
     margin-right: 20px;
   }
+
   .hamburger div {
     width: 20px;
     height: 2px;
-    background-color: rgb(236, 127, 127);
+    background-color: white;
   }
 
   .sidebar {
     display: block;
   }
+
   .header img {
     height: 10vw;
     width: 10vw;
     border-radius: 50%;
+    background: transparent;
   }
 }

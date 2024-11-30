@@ -40,7 +40,7 @@
 .mapouter {
     flex: 1;
     padding: 1.5rem;
-    background: linear-gradient(135deg, #8e0e00, #d42589, #ff7e5f);
+    background: linear-gradient(80.94deg, #4299EA 27.45%, #00C9D6 83.06%) !important;
     color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

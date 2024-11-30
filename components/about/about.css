@@ -1,8 +1,6 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding-top: 60px;
-  margin-bottom: 20px;
 }
 
 .about-container {
@@ -15,25 +13,31 @@
 
 .about-header {
   text-align: center;
+  margin-top: 4em;
+  margin-bottom: 3em;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
 }
 
 .about-header h1 {
   font-size: clamp(2rem, 5vw, 2.5rem);
-  margin-bottom: 10px;
-  color: #c4334d;
+  background: radial-gradient(58.17% 58.14% at 45.01% 63.87%, #FFFFFF 0%, #999999 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .about-header p {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
-  color: #f35454;
+  color: white;
 }
 
 .section,
 .section2 {
   margin-bottom: 4rem;
-  padding: 2rem;
-  background: linear-gradient(135deg, #8e0e00, #d42589, #ff7e5f);
-  border-radius: 8px;
+  padding: 1em 1em 1em 1em;
+  background: #212239;
+  border-radius: 0.5em;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -43,11 +47,13 @@
   color: #fff;
   margin-bottom: 10px;
   text-align: center;
+  font-weight: 500;
 }
 
 .section p,
 .section2 p {
   font-size: clamp(1rem, 2.5vw, 1.1rem);
+  font-weight: 300;
   color: #fff;
   text-align: justify;
   padding: 10px;
@@ -61,34 +67,47 @@
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
+  padding-bottom: 1em;
 }
 
 .team-member {
   flex: 1 1 300px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
   padding: 1rem;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.team-member:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .team-member img {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 10%;
   margin-bottom: 10px;
   max-width: 100%;
   height: auto;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .team-member h3 {
   font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 500;
   margin: 5px 0;
+  color: #fff;
 }
 
 .team-member p {
   font-size: clamp(0.8rem, 2vw, 0.9rem);
-  color: #555;
+  color: rgba(255, 255, 255, 0.8);
   text-align: center;
 }
 
@@ -103,26 +122,47 @@
 .mapouter {
   flex: 1;
   padding: 1rem;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.1);
+  /* Semi-transparent background */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Subtle border for glass effect */
+  backdrop-filter: blur(15px);
+  /* Apply blur for glassmorphism */
+  -webkit-backdrop-filter: blur(15px);
+  /* For Safari */
+  border-radius: 16px;
+  /* Smooth rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  /* Subtle shadow for depth */
+  color: #ffffff;
+  /* White text for better contrast */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.contact-info:hover,
+.mapouter:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .mapouter iframe {
   width: 100%;
   height: auto;
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .contact-info a {
-  color: #007bff;
+  color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
+  transition: color 0.3s ease-in-out;
 }
 
 .contact-info a:hover {
+  color: rgba(255, 255, 255, 1);
   text-decoration: underline;
 }
+
 @media (max-width: 768px) {
   .contact-container {
       flex-direction: column;
