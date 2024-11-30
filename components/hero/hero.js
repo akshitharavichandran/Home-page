@@ -18,7 +18,7 @@ class HeroSection extends HTMLElement {
       const heroSection = data.pages.home.sections.find(
         (section) => section.type === "hero"
       );
-      return heroSection;  
+      return heroSection || {};
     } catch (error) {
       console.error("Error fetching hero data:", error);
       return null;
@@ -44,7 +44,7 @@ class HeroSection extends HTMLElement {
       console.error("No hero data to render");
       return;
     }
-    this.render(heroData); 
+    await this.render(heroData); 
   }
 
   async render(heroData) {
@@ -61,14 +61,20 @@ class HeroSection extends HTMLElement {
 
       const heroContent = document.importNode(template.content, true);
 
-      heroContent.querySelector('.section-heading').textContent = heroData.heading;
-      heroContent.querySelector('.section-caption').textContent = heroData.caption;
-      heroContent.querySelector('.section-description').textContent = heroData.description;
-      heroContent.querySelector('.hero-image').setAttribute('src', heroData.imageUrl);
-      const ctaButton = heroContent.querySelector('.cta-button', heroData.cta);
-      ctaButton.setAttribute('href', heroData.cta.url);
-      ctaButton.setAttribute('title', heroData.cta.desc);
-      ctaButton.textContent = heroData.cta.label;
+      // Safely set hero content
+      heroContent.querySelector('.section-heading').textContent = heroData.heading || "Welcome to Aksh's Magic";
+      heroContent.querySelector('.section-caption').textContent = heroData.caption || "Innovative solutions to elevate your business.";
+      heroContent.querySelector('.section-description').textContent = heroData.description || "";
+      heroContent.querySelector('.hero-image').setAttribute('src', heroData.imageUrl || "images/rose-petals.png");
+
+      const ctaButton = heroContent.querySelector('.cta-button');
+      if (heroData.cta) {
+        ctaButton.setAttribute('href', heroData.cta.url || "#");
+        ctaButton.setAttribute('title', heroData.cta.desc || "Learn more");
+        ctaButton.textContent = heroData.cta.label || "Get Started";
+      } else {
+        ctaButton.style.display = "none"; 
+      }
 
       const styles = await this.loadStyles();
       this.shadowRoot.innerHTML = `
