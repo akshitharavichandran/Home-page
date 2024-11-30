@@ -134,7 +134,7 @@ nav.desktop-nav a.active-link {
   padding: 0.75em 1em;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
   font-weight: bold;
-  background: #dd2c7f;
+  background: #d63131;
   border-radius: 5px;
   text-decoration: none;
   color: white;
@@ -142,7 +142,7 @@ nav.desktop-nav a.active-link {
 }
 
 .sidebar .cta-button:hover {
-  background: #d8044b;
+  background: #dd1212;
 }
 
 .close-btn {
@@ -177,8 +177,8 @@ nav.desktop-nav a.active-link {
     display: block;
   }
   .header img {
-    height: 8vw;
-    width: 8vw;
+    height: 10vw;
+    width: 10vw;
     border-radius: 50%;
   }
 }
