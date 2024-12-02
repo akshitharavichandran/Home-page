@@ -8,16 +8,16 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5em 1em;
+  padding: 0.5rem 1rem;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(0.625rem);
+  -webkit-backdrop-filter: blur(0.625rem);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
   color: white;
   z-index: 10;
   flex-wrap: wrap;
-  border-radius: 3rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 1.875rem;
+  box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 
@@ -47,7 +47,7 @@
 }
 
 .header h1 {
-  font-size: clamp(0.75rem, 1.5vw + 0.5rem, 1.5rem);
+  font-size: clamp(1.2rem, 1.5vw + 0.5rem, 1.5rem);
   margin: 0;
   font-weight: bold;
   color: #fff;
@@ -64,22 +64,22 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 20px;
-  height: 15px;
+  width: 1.25rem;
+  height: 0.9375rem;
   cursor: pointer;
   background: transparent;
 }
 
 .hamburger div {
-  width: 20px;
-  height: 2px;
+  width: 1.25rem;
+  height: 0.125rem;
   background-color: white;
 }
 
 nav.desktop-nav {
   display: flex;
   align-items: center;
-  gap: 2.5em;
+  gap: 2.5rem;
   background: transparent;
 }
 
@@ -87,8 +87,8 @@ nav.desktop-nav a {
   color: #bcbcbc;
   text-decoration: none;
   font-weight: medium;
-  font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
-  padding: 0.25em;
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem);
+  padding: 0.25rem;
   background: transparent;
 }
 
@@ -113,11 +113,11 @@ nav.desktop-nav a.active-link {
     #00c9d6 83.06%
   ) !important;
   color: white !important;
-  padding: 0.5em 1em !important;
+  padding: 0.5rem 1rem !important;
   text-decoration: none;
   border-radius: 3em;
   font-weight: 400 !important;
-  font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem);
 }
 
 .sidebar {
@@ -125,12 +125,12 @@ nav.desktop-nav a.active-link {
   position: fixed;
   top: 0;
   right: 0;
-  width: 240px;
+  width: 15rem;
   height: 100vh;
   background-color: #0e0f1c;
   color: black;
-  padding: 1.5em;
-  box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  box-shadow: -0.1875rem 0 0.5rem rgba(0, 0, 0, 0.5);
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 15;
@@ -146,16 +146,16 @@ nav.desktop-nav a.active-link {
   justify-content: center;
   align-items: center;
   gap: 1em;
-  margin-top: 1.5em;
+  margin-top: 1.5rem;
 }
 
 .sidebar a {
   color: white;
   text-decoration: none;
-  font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1.1rem);
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem);
   font-weight: 500;
-  padding: 0.25em 0.75em;
-  border-radius: 5px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.3125rem;
   transition: background 0.3s, color 0.3s;
 }
 
@@ -166,13 +166,13 @@ nav.desktop-nav a.active-link {
 
 .sidebar .cta-button {
   display: block;
-  margin: 1.5em 0 0;
+  margin: 1.5rem 0 0;
   text-align: center;
-  padding: 0.75em 1em;
-  font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
+  padding: 0.75rem 1rem;
+  font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem);
   font-weight: bold;
   background-color: #0e0f1c;
-  border-radius: 5px;
+  border-radius: 0.3125rem;
   text-decoration: none;
   color: white;
   transition: background 0.3s ease-in-out;
@@ -184,8 +184,8 @@ nav.desktop-nav a.active-link {
 
 .close-btn {
   position: absolute;
-  top: 0.5em;
-  right: 0.5em;
+  top: 0.5rem;
+  right: 0.5rem;
   background: none;
   border: none;
   font-size: clamp(1.2rem, 2.5vw + 0.5rem, 1.5rem);
@@ -195,19 +195,19 @@ nav.desktop-nav a.active-link {
   transition: color 0.3s ease-in-out;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48em) {
   nav.desktop-nav {
     display: none;
   }
 
   .hamburger {
     display: flex;
-    margin-right: 20px;
+    margin-right: 1.25rem;
   }
 
   .hamburger div {
-    width: 20px;
-    height: 2px;
+    width: 1.25rem;
+    height: 0.125rem;
     background-color: white;
   }
 
