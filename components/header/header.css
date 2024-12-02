@@ -56,8 +56,8 @@
 }
 
 .brand-name {
-  color: #3AA1FF !important;
-  font-weight: 600 !important
+  color: #3aa1ff !important;
+  font-weight: 600 !important;
 }
 
 .hamburger {
@@ -84,7 +84,7 @@ nav.desktop-nav {
 }
 
 nav.desktop-nav a {
-  color: #BCBCBC;
+  color: #bcbcbc;
   text-decoration: none;
   font-weight: medium;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
@@ -102,22 +102,22 @@ nav.desktop-nav a.active-link {
 }
 
 .header.active {
-  background-color: #3AA1FF;
+  background-color: #3aa1ff;
   color: white;
 }
 
 .header .cta-button {
-  background: linear-gradient(80.94deg, #4299EA 27.45%, #00C9D6 83.06%) !important;
+  background: linear-gradient(
+    80.94deg,
+    #4299ea 27.45%,
+    #00c9d6 83.06%
+  ) !important;
   color: white !important;
   padding: 0.5em 1em !important;
   text-decoration: none;
   border-radius: 3em;
   font-weight: 400 !important;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
-}
-
-.cta-button:hover {
-  background-color: #d0701a;
 }
 
 .sidebar {
@@ -127,7 +127,7 @@ nav.desktop-nav a.active-link {
   right: 0;
   width: 240px;
   height: 100vh;
-  background-color: #0E0F1C;
+  background-color: #0e0f1c;
   color: black;
   padding: 1.5em;
   box-shadow: -3px 0 8px rgba(0, 0, 0, 0.5);
@@ -171,7 +171,7 @@ nav.desktop-nav a.active-link {
   padding: 0.75em 1em;
   font-size: clamp(0.75rem, 1.5vw + 0.25rem, 1rem);
   font-weight: bold;
-  background-color: #0E0F1C;
+  background-color: #0e0f1c;
   border-radius: 5px;
   text-decoration: none;
   color: white;
